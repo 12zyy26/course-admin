@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>账户/角色管理 - HES管理系统</title>
+    <link rel="stylesheet" href="../css/account.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 面包屑导航 -->
+        <div class="breadcrumb">
+            首页 / 账户/角色管理
+        </div>
+        
+        <!-- 标题区域 -->
+        <div class="header-section">
+            <h2>账户/角色管理</h2>
+        </div>
+        
+        <!-- 操作区域 -->
+        <div class="action-section">
+            <div class="action-left">
+                <button type="button" class="add-btn" id="addAccountBtn">新增</button>
+                <button type="button" class="delete-btn" id="deleteSelectedBtn">删除选中</button>
+            </div>
+            
+            <div class="action-right">
+                <div class="search-input-group">
+                    <input type="text" id="searchName" placeholder="账户名称">
+                    <input type="text" id="searchPhone" placeholder="电话">
+                    <input type="text" id="searchEmail" placeholder="邮箱">
+                </div>
+                <button type="button" class="search-btn" id="searchBtn">查询</button>
+            </div>
+        </div>
+        
+        <!-- 账户表格区域 -->
+        <div class="account-table-container">
+            <!-- 表格头 -->
+            <div class="table-header">
+                <div class="checkbox-col"><input type="checkbox" id="selectAllCheckbox"></div>
+                <div class="col account-name-col">账户名称</div>
+                <div class="col account-role-col">账户角色</div>
+                <div class="col phone-col">电话</div>
+                <div class="col email-col">邮箱</div>
+                <div class="col remark-col">备注</div>
+                <div class="col operation-col">操作</div>
+            </div>
+            
+            <!-- 表格内容 -->
+            <div class="table-body" id="accountTableBody">
+                <!-- 账户行将通过JS动态生成 -->
+            </div>
+            
+            <!-- 无数据提示 -->
+            <div class="no-data-tip" id="noDataTip">
+                <div class="placeholder-row">
+                    <div class="checkbox-placeholder"></div>
+                    <div class="text-placeholder">暂无数据</div>
+                </div>
+                <div class="status-description">
+                    提示：您可以点击"新增"按钮添加新的账户/角色，或修改搜索条件重新查询
+                </div>
+            </div>
+        </div>
+        
+        <!-- 分页区域 -->
+        <div class="pagination-section">
+            <div class="pagination-info">
+                共<span id="totalAccounts">0</span>条
+            </div>
+            <div class="pagination-controls">
+                <button class="page-btn" id="prevPageBtn">上一页</button>
+                <div class="page-numbers">
+                    <span id="currentPage">1</span>/<span id="totalPages">1</span>
+                </div>
+                <button class="page-btn" id="nextPageBtn">下一页</button>
+                <div class="page-size-selector">
+                    <select id="pageSizeSelect">
+                        <option value="6">6条/页</option>
+                        <option value="10">10条/页</option>
+                        <option value="20">20条/页</option>
+                        <option value="50">50条/页</option>
+                    </select>
+                </div>
+                <div class="page-jump">
+                    跳至 <input type="number" id="pageJumpInput" min="1" value="1"> 页
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 新增/修改账户模态框 -->
+    <div id="accountModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">创建账户/角色</h3>
+                <span class="modal-close" id="modalCloseBtn">&times;</span>
+            </div>
+            <form id="accountForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="accountName"><span class="required-star">*</span>账户名称</label>
+                        <input type="text" id="accountName" placeholder="请输入账户名称" required>
+                        <div class="error-tip" id="accountNameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="accountPhone"><span class="required-star">*</span>电话</label>
+                        <input type="tel" id="accountPhone" placeholder="请输入11位手机号码" required>
+                        <div class="error-tip" id="accountPhoneError"></div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="accountEmail"><span class="required-star">*</span>邮箱</label>
+                        <input type="email" id="accountEmail" placeholder="请输入邮箱地址" required>
+                        <div class="error-tip" id="accountEmailError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="accountRole"><span class="required-star">*</span>账户角色</label>
+                        <select id="accountRole" required>
+                            <option value="" hidden>请选择账户角色</option>
+                            <option value="admin">管理员</option>
+                            <option value="teacher">老师</option>
+                        </select>
+                        <div class="error-tip" id="accountRoleError"></div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="accountPassword"><span class="required-star">*</span>密码</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="accountPassword" placeholder="请输入密码(8-20位，字母、数字、特殊字符至少两种)" required>
+                            <span class="password-toggle" id="passwordToggle">
+                                <i class="eye-icon">
+                                    <!-- 默认显示闭眼图片 -->
+                                    <img src="../imgs/登陆界面的密码隐藏图.jpg" alt="隐藏密码" class="eye-closed">
+                                    <!-- 睁眼图片默认隐藏 -->
+                                    <img src="../imgs/登录界面的密码查看图.jpg" alt="显示密码" class="eye-open">
+                                </i>
+                            </span>
+                        </div>
+                        <div class="error-tip" id="accountPasswordError"></div>
+                    </div>
+                </div>
+                <div class="form-row full-width">
+                    <div class="form-group">
+                        <label for="accountRemark">备注</label>
+                        <div class="textarea-container">
+                            <textarea id="accountRemark" placeholder="请输入备注信息" rows="3" maxlength="255"></textarea>
+                            <div class="char-counter" id="remarkCounter">0/255</div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="cancel-btn" id="modalCancelBtn">取消</button>
+                <button type="button" class="confirm-btn" id="modalConfirmBtn">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 查看账户/角色模态框 -->
+    <div id="viewModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>查看账户/角色</h3>
+                <span class="modal-close" id="viewModalCloseBtn">&times;</span>
+            </div>
+            <div class="view-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><span class="required-star">*</span>账户名称</label>
+                        <div class="view-value" id="viewAccountName"></div>
+                    </div>
+                    <div class="form-group">
+                        <label><span class="required-star">*</span>电话</label>
+                        <div class="view-value" id="viewAccountPhone"></div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><span class="required-star">*</span>邮箱</label>
+                        <div class="view-value" id="viewAccountEmail"></div>
+                    </div>
+                    <div class="form-group">
+                        <label><span class="required-star">*</span>账户角色</label>
+                        <div class="view-value" id="viewAccountRole"></div>
+                    </div>
+                </div>
+                <div class="form-row full-width">
+                    <div class="form-group">
+                        <label>备注</label>
+                        <div class="view-value" id="viewAccountRemark"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="confirm-btn" id="viewModalCloseBtn2">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 确认删除模态框 -->
+    <div id="confirmModal" class="modal hidden">
+        <div class="modal-content" style="width: 400px;">
+            <div class="modal-header">
+                <h3>确认删除</h3>
+                <span class="modal-close" id="confirmModalCloseBtn">&times;</span>
+            </div>
+            <div class="confirm-body">
+                <p id="confirmMessage">确定要删除选中的账户吗？</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="cancel-btn" id="confirmCancelBtn">取消</button>
+                <button type="button" class="confirm-btn" id="confirmDeleteBtn">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/account.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HES管理系统 - 登录</title>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+
+<body>
+    <div class="login-page">
+        <div class="center-container">
+            <div class="login-container">
+                <div class="login-title">HES | Management</div>
+                <form id="loginForm" action="admin.html">
+                    <!-- 账号输入 -->
+                    <div class="input-container">
+                        <label class="input-label">
+                            <span class="required-mark">*</span>账号
+                        </label>
+                        <input type="text" 
+                               id="usernameInput" 
+                               class="login-input" 
+                               autofocus 
+                               title="账号" 
+                               placeholder="请输入邮箱或手机号" 
+                               required>
+                        <div class="error-message" id="usernameErrorMessage"></div>
+                    </div>
+                    
+                    <!-- 密码输入 -->
+                    <div class="input-container">
+                        <label class="input-label">
+                            <span class="required-mark">*</span>密码
+                        </label>
+                        <div class="password-wrapper">
+                            <input type="password" 
+                                   id="passwordInput" 
+                                   class="login-input" 
+                                   title="密码" 
+                                   placeholder="请输入密码(8-20位，字母、数字、特殊字符至少两种)" 
+                                   required>
+                            <span class="password-toggle-btn" id="passwordToggleBtn">
+                                <i class="eye-icon-container">
+                                    <!-- 使用绝对定位叠加两张图片，通过opacity控制显示 -->
+                                    <img src="../imgs/登陆界面的密码隐藏图.jpg" alt="隐藏密码" class="eye-closed">
+                                    <img src="../imgs/登录界面的密码查看图.jpg" alt="显示密码" class="eye-open">
+                                </i>
+                            </span>
+                        </div>
+                        <div class="error-message" id="passwordErrorMessage"></div>
+                    </div>
+
+                    <!-- 登录按钮 -->
+                    <div class="login-btn-container">
+                        <button type="submit" 
+                                id="loginBtn" 
+                                class="login-btn" 
+                                disabled>
+                            登录
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/login.js"></script>
+</body>
+
+</html>

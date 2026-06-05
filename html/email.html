@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邮件管理 - HES管理系统</title>
+    <link rel="stylesheet" href="../css/email.css">
+</head>
+<body>
+    <div class="container">
+        <div class="breadcrumb">
+            首页 / 基础信息管理 / 邮件管理
+        </div>
+        
+        <div class="header-section">
+            <h2>邮件服务设置</h2>
+            <div class="header-actions">
+                <button type="button" class="edit-btn" id="edit-btn">编辑</button>
+                <div class="save-cancel-buttons" id="save-cancel-buttons" style="display: none;">
+                    <button type="button" class="cancel-btn" id="cancel-btn">取消</button>
+                    <button type="button" class="submit-btn" id="save-btn">保存</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-box">
+            <form id="email-form">
+                <div class="form-section">
+                    <div class="form-row">
+                        <div class="form-item">
+                            <label for="mail-address"><span class="required">*</span>邮件发送地址</label>
+                            <input type="text" id="mail-address" class="input-field" placeholder="请输入邮件发送地址" readonly>
+                            <div class="error-tip" id="mail-address-error"></div>
+                        </div>
+                        <div class="form-item">
+                            <label for="username"><span class="required">*</span>用户名</label>
+                            <input type="text" id="username" class="input-field" placeholder="请输入用户名" readonly>
+                            <div class="error-tip" id="username-error"></div>
+                        </div>
+                        <div class="form-item">
+                            <label for="password"><span class="required">*</span>密码</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="password" class="input-field" placeholder="请输入密码(8-20位，字母、数字、特殊字符至少两种)" readonly>
+                                <span class="password-toggle" id="password-toggle">
+                                    <i class="eye-icon">
+                                        <img src="../imgs/登陆界面的密码隐藏图.jpg" alt="隐藏密码" class="eye-closed">
+                                        <img src="../imgs/登录界面的密码查看图.jpg" alt="显示密码" class="eye-open">
+                                    </i>
+                                </span>
+                            </div>
+                            <div class="error-tip" id="password-error"></div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-item">
+                            <label for="attach-ip">附件存档服务器IP</label>
+                            <input type="text" id="attach-ip" class="input-field" placeholder="请输入附件存档服务器IP" readonly>
+                        </div>
+                        <div class="form-item">
+                            <label for="attach-port">附件存档服务器端口</label>
+                            <input type="text" id="attach-port" class="input-field" placeholder="请输入附件存档服务器端口" readonly>
+                        </div>
+                        <div class="form-item">
+                            <label for="attach-account">附件存储服务器账号</label>
+                            <input type="text" id="attach-account" class="input-field" placeholder="请输入附件存储服务器账号" readonly>
+                        </div>
+                        <div class="form-item">
+                            <label for="attach-password">附件存储服务器密码</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="attach-password" class="input-field" placeholder="请输入附件存储服务器密码" readonly>
+                                <span class="password-toggle" id="attach-password-toggle">
+                                    <i class="eye-icon">
+                                        <img src="../imgs/登陆界面的密码隐藏图.jpg" alt="隐藏密码" class="eye-closed">
+                                        <img src="../imgs/登录界面的密码查看图.jpg" alt="显示密码" class="eye-open">
+                                    </i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="form-row">
+                        <div class="form-item">
+                            <label for="mail-title"><span class="required">*</span>邮件标题格式</label>
+                            <input type="text" id="mail-title" class="input-field" placeholder="请输入邮件标题格式" readonly>
+                            <div class="error-tip" id="mail-title-error"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="form-row">
+                        <div class="form-item full-width">
+                            <label for="mail-content"><span class="required">*</span>邮件内容</label>
+                            <div class="textarea-container">
+                                <textarea id="mail-content" class="text-field" placeholder="请输入邮件内容模板" rows="5" readonly maxlength="255"></textarea>
+                                <div class="char-counter" id="char-counter">0/255</div>
+                            </div>
+                            <div class="error-tip" id="mail-content-error"></div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-item">
+                            <label for="attach-folder"><span class="required">*</span>附件归档文件夹</label>
+                            <input type="text" id="attach-folder" class="input-field" placeholder="请输入附件归档文件夹（如：/file/pdf）" readonly>
+                            <div class="error-tip" id="attach-folder-error"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="form-row">
+                        <div class="form-item">
+                            <label><span class="required">*</span>附件电子签名</label>
+                            <div class="signature-upload-area" id="signature-upload-area">
+                                <input type="file" id="signature-file" accept="image/*" hidden>
+                                <div class="upload-content" id="upload-content">
+                                    <div class="upload-icon">+</div>
+                                    <div class="upload-text">点击上传签名</div>
+                                </div>
+                                <div class="preview-content" id="preview-content" style="display: none;">
+                                    <div class="preview-overlay">
+                                        <div class="change-text">点击更换图片</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="error-tip" id="signature-error"></div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="../js/email.js"></script>
+</body>
+</html>

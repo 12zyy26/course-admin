@@ -1,0 +1,580 @@
+/* 基础重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #f5f5f5;
+}
+
+/* 主容器 */
+.admin {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* 顶部区域 */
+.admin .top {
+    height: 40px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    min-width: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+/* Logo区域 */
+.admin .top .logo {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    color: #000000;
+    font-size: 24px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Logo图片 */
+.admin .top .logo img {
+    height: 25px;
+    margin-right: 10px;
+    display: block;
+}
+
+/* 工具栏 */
+.admin .top .toolBtn {
+    display: flex;
+    align-items: center;
+}
+
+/* 用户菜单样式 */
+.admin .top .toolBtn .user-menu {
+    position: relative;
+    cursor: pointer;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    min-width: 100px;
+    padding: 0 15px;
+}
+
+.admin .top .toolBtn .user-menu:hover {
+    background-color: #666;
+}
+
+.admin .top .toolBtn .user-menu label {
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    height: 100%;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.admin .top .toolBtn .user-menu:hover label {
+    color: #fff;
+}
+
+/* 用户下拉菜单 */
+.user-dropdown {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: none;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.user-dropdown .dropdown-item {
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+}
+
+.user-dropdown .dropdown-item:hover {
+    background-color: #f5f5f5;
+    color: #3593c7;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background-color: #eee;
+    margin: 0;
+    padding: 0;
+    border: none;
+    width: 100%;
+}
+
+/* 主体区域 */
+.admin .body {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    min-width: 100%;
+    background-color: #f5f5f5;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+/* 左侧导航 */
+.admin .body .left {
+    width: 210px;
+    min-width: 210px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+/* 右侧内容区 */
+.admin .body .right {
+    flex: 1;
+    background-color: transparent;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* iframe样式 */
+#rightiframe {
+    width: 100%;
+    height: 100vh;
+    border: none;
+    display: block;
+    background-color: transparent;
+    align-self: flex-start;
+    margin: 0;
+    padding: 0;
+}
+
+/* 导航工具样式 */
+.admin .body .left .navTools {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.admin .body .left .navTools > li {
+    margin: 0;
+    padding: 0;
+}
+
+.admin .body .left .navTools .indexLink a {
+    text-decoration: none;
+    color: #000;
+}
+
+.admin .body .left .navTools li span {
+    height: 45px;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    cursor: pointer;
+    padding-left: 50px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color 0.2s ease;
+    margin: 0 5px 0 5px;
+    position: relative;
+}
+
+/* ============ 重要：激活状态样式 ============ */
+/* 1. 首页激活状态（使用menuLiT类识别） */
+.admin .body .left .navTools li .menuLiT span.active {
+    background-color: #f0f0f0 !important;
+    font-weight: bold !important;
+}
+
+/* 2. 账户管理激活状态（没有has-submenu类） */
+.admin .body .left .navTools li .menuLi span.active:not(.has-submenu) {
+    background-color: #f0f0f0 !important;
+    font-weight: bold !important;
+}
+
+/* 3. 有子菜单的父项 - 即使有active类也不显示激活样式 */
+.admin .body .left .navTools li .menuLi span.has-submenu.active {
+    background-color: transparent !important;
+    font-weight: normal !important;
+}
+
+/* 4. 所有项的悬停效果 */
+.admin .body .left .navTools li span:hover {
+    background-color: #f0f0f0;
+}
+
+/* 有子条目的父项右侧添加下拉箭头 */
+.admin .body .left .navTools li .menuLi span.has-submenu::after {
+    content: "▼";
+    font-size: 10px;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    transition: transform 0.3s ease;
+}
+
+/* 展开状态：向上箭头 */
+.admin .body .left .navTools li .menuLi span.has-submenu.menu-expanded::after {
+    content: "▲";
+    transform: translateY(-50%);
+}
+
+/* 子菜单样式 */
+.admin .body .left .navTools .downmenu {
+    display: none;
+    padding: 0;
+    width: 100%;
+    background-color: #f9f9f9;
+}
+
+.admin .body .left .navTools .downmenu.show {
+    display: block;
+}
+
+.admin .body .left .navTools .downmenu dd {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.admin .body .left .navTools .downmenu dd a {
+    padding-left: 50px;
+    font-size: 13px;
+    height: 35px;
+    text-decoration: none;
+    color: #666;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    margin: 0 5px 0 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color 0.2s ease;
+}
+
+/* 子菜单项激活状态 */
+.admin .body .left .navTools .downmenu dd a.active {
+    background-color: #f0f0f0 !important;
+    color: #000000 !important;
+    font-weight: bold !important;
+}
+
+/* 子菜单悬停效果 */
+.admin .body .left .navTools .downmenu dd a:hover {
+    background-color: #f0f0f0;
+}
+
+/* 工具链接图标样式 */
+.admin .body .left .navTools .toolLink {
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: left 15px center;
+    background-size: 18px 18px;
+}
+
+/* 各个图标定义 */
+.admin .body .left .navTools .t1 {
+    top: 5px;
+    background-image: url(../imgs/侧边栏首页图标.jpg);
+}
+
+.admin .body .left .navTools .t2 {
+    background-image: url(../imgs/侧边栏账户或角色管理图标.jpg);
+}
+
+.admin .body .left .navTools .t3 {
+    background-image: url(../imgs/侧边栏基础信息管理图标.jpg);
+}
+
+.admin .body .left .navTools .t4 {
+    background-image: url(../imgs/侧边栏项目管理图标.jpg);
+}
+
+.admin .body .left .navTools .t5 {
+    background-image: url(../imgs/侧边栏统计报表图标.jpg);
+}
+
+/* 弹窗样式 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 8px;
+    width: 700px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    padding: 20px;
+    background: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+    font-weight: 600;
+}
+
+.modal-close {
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: #eee;
+    color: #333;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #3593c7;
+    box-shadow: 0 0 5px rgba(53, 147, 199, 0.3);
+}
+
+.form-group input.error {
+    border-color: #ff4444;
+    background-color: #fff8f8;
+}
+
+.form-group .error-tip {
+    color: #ff4444;
+    font-size: 12px;
+    margin-top: 5px;
+    min-height: 18px;
+    display: none;
+}
+
+.form-group .error-tip.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-group.buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    min-width: 80px;
+}
+
+.btn-primary {
+    background: #3593c7;
+    color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: #2c7ba8;
+    transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background: #d0d0d0;
+}
+
+/* 密码显示/隐藏切换样式 */
+.password-wrapper {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none;
+    padding: 5px;
+    transition: all 0.3s ease;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 2;
+}
+
+.password-toggle.has-content {
+    opacity: 1;
+    visibility: visible;
+}
+
+.password-toggle:hover {
+    opacity: 1;
+}
+
+.password-toggle .eye-icon {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.password-toggle .eye-icon img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+}
+
+.password-toggle .eye-icon .eye-closed {
+    opacity: 1;
+}
+
+.password-toggle .eye-icon .eye-open {
+    opacity: 0;
+}
+
+.password-toggle.visible .eye-icon .eye-closed {
+    opacity: 0;
+}
+
+.password-toggle.visible .eye-icon .eye-open {
+    opacity: 1;
+}
+
+/* 调整密码输入框的padding，给小眼睛留出空间 */
+#newPassword, #confirmPassword {
+    padding-right: 40px;
+    width: 100%;
+}

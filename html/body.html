@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>首页 - HES管理系统</title>
+	<link rel="stylesheet" href="../css/body.css">
+</head>
+<body>
+	<div class="dashboard-container">
+		<!-- 培训计划管理标题 -->
+		<div class="main-title"> 培训计划管理 </div>
+		<!-- 培训计划表格 -->
+		<div class="training-table-container">
+			<table class="training-table">
+
+				<!-- 添加colgroup明确定义列宽 -->
+				<colgroup>
+					<col style="width: 100px;"> <!-- 巨化列 -->
+					<col style="width: 100px;"> <!-- 歌瑞列 -->
+					<col style="width: 320px;"> <!-- Mon -->
+					<col> <!-- Tue -->
+					<col> <!-- Web -->
+					<col> <!-- Thu -->
+					<col> <!-- Fri -->
+				</colgroup>
+				<!-- 表头：星期和日期 -->
+				<thead>
+					<tr>
+						<th class="training-title" colspan="7">培训计划（2024/10/28 - 2024/11/03）</th>
+					</tr>
+					<tr>
+						<th class="client-header" rowspan="2" colspan="2">客户</th>
+						<th class="week-header">
+							<div class="week-name">Mon</div>
+						</th>
+						<th class="week-header">
+							<div class="week-name">Tue</div>
+						</th>
+						<th class="week-header">
+							<div class="week-name">Web</div>
+						</th>
+						<th class="week-header">
+							<div class="week-name">Thu</div>
+						</th>
+						<th class="week-header">
+							<div class="week-name">Fri</div>
+						</th>
+					</tr>
+					<tr>
+						<th class="day-header">
+							<div class="date">28 - Oct</div>
+						</th>
+						<th class="day-header">
+							<div class="date">29 - Oct</div>
+						</th>
+						<th class="day-header">
+							<div class="date">30 - Oct</div>
+						</th>
+						<th class="day-header">
+							<div class="date">31 - Oct</div>
+						</th>
+						<th class="day-header">
+							<div class="date">1 - Nov</div>
+						</th>
+					</tr>
+				</thead>
+				<!-- 表格内容 -->
+				<tbody>
+					<!-- 巨化行 -->
+					<tr class="training-row">
+						<td class="client-cell" rowspan="3">巨化</td>
+						<td class="client-cell">歌瑞</td>
+						<td class="plan-cell" style="background-color: #f5f5f5;">
+							<div class="training-item">
+								<div class="training-system">JES体系</div>
+								<div class="training-content">1.培训时间为 2024年 11月 3日 - 2024年 11月 5日</div>
+								<div class="training-info">魏文雅1老师，周新刚老师 - 全天</div>
+							</div>
+						</td>
+						<td class="no-plan-cell">
+							<div class="no-plan-text">暂无计划</div>
+						</td>
+						<td class="no-plan-cell">
+							<div class="no-plan-text">暂无计划</div>
+						</td>
+						<td class="no-plan-cell">
+							<div class="no-plan-text">暂无计划</div>
+						</td>
+						<td class="no-plan-cell">
+							<div class="no-plan-text">暂无计划</div>
+						</td>
+					</tr>
+					<!-- 总部行 -->
+					<tr class="training-row">
+						<td class="client-cell">总部</td>
+						<td class="plan-cell" style="background-color: #f5f5f5;">
+							<div class="training-item">
+								<div class="training-system">JES体系</div>
+								<div class="training-content">这是测试</div>
+								<div class="training-info">周昊老师 - 上午</div>
+							</div>
+						</td>
+						<td class="no-plan-cell">
+							<div class="no-plan-text">暂无计划</div>
+						</td>
+						<td class="no-plan-cell">
+							<div class="no-plan-text">暂无计划</div>
+						</td>
+						<td class="no-plan-cell">
+							<div class="no-plan-text">暂无计划</div>
+						</td>
+						<td class="no-plan-cell">
+							<div class="no-plan-text">暂无计划</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<script src="../js/body.js"></script>
+</body>
+</html>

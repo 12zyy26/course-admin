@@ -1,0 +1,567 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Microsoft YaHei", Arial, sans-serif;
+}
+
+body {
+    background-color: transparent;
+    color: #000;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+    background-color: #fff;
+    padding: 25px 25px 30px;
+    margin: 0;
+}
+
+.breadcrumb {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e5b55b;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    margin: 0;
+}
+
+.header-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.edit-btn {
+    background: #e5b55b;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-width: 100px;
+    display: block;
+}
+
+.edit-btn:hover {
+    background: #c19645;
+}
+
+.save-cancel-buttons {
+    display: flex;
+    gap: 15px;
+    display: none;
+}
+
+.form-box {
+    width: 100%;
+    background: #fff;
+}
+
+.form-section {
+    margin-bottom: 30px;
+}
+
+.form-section:last-child {
+    border-bottom: none;
+    margin-bottom: 30px;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.form-item {
+    flex: 1;
+    min-width: 220px;
+}
+
+.form-item.full-width {
+    flex: 0 0 100%;
+    min-width: 100%;
+}
+
+.form-item label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.required {
+    color: red;
+    padding-right: 5px;
+}
+
+/* 邮件内容文本框容器 */
+.textarea-container {
+    position: relative;
+    width: 100%;
+}
+
+/* 字数计数器 */
+.char-counter {
+    position: absolute;
+    bottom: 12px;
+    right: 15px;
+    font-size: 12px;
+    color: #999;
+    padding: 2px 6px;
+    border-radius: 3px;
+    pointer-events: none;
+    transition: color 0.3s ease;
+}
+
+.char-counter.warning {
+    color: #ff9800;
+    font-weight: bold;
+}
+
+.char-counter.error {
+    color: #f44336;
+    font-weight: bold;
+}
+
+.input-field {
+    width: 100%;
+    height: 42px;
+    padding: 0 15px;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    background-color: #f5f5f5;
+    transition: all 0.3s ease;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #e5b55b;
+    box-shadow: 0 0 5px rgba(229, 181, 91, 0.2);
+}
+
+.input-field::placeholder {
+    color: #999;
+}
+
+.input-field:read-only {
+    background-color: #f9f9f9;
+    color: #666;
+}
+
+.text-field {
+    width: 100%;
+    padding: 12px 15px 30px 15px; /* 增加底部内边距，为计数器留空间 */
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    background-color: #f5f5f5;
+    resize: vertical;
+    transition: all 0.3s ease;
+    min-height: 120px;
+    line-height: 1.6;
+}
+
+.text-field:focus {
+    outline: none;
+    border-color: #e5b55b;
+    box-shadow: 0 0 5px rgba(229, 181, 91, 0.2);
+}
+
+.text-field::placeholder {
+    color: #999;
+}
+
+.text-field:read-only {
+    background-color: #f9f9f9;
+    color: #666;
+}
+
+/* 签名上传区域样式 - 合并上传和预览 */
+.signature-upload-area {
+    width: 150px;
+    height: 150px;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.signature-upload-area:hover {
+    border-color: #e5b55b;
+    background-color: #fef9f0;
+}
+
+.signature-upload-area.has-image {
+    border-style: solid;
+    border-color: #d0d0d0;
+}
+
+.upload-content {
+    text-align: center;
+    color: #666;
+    padding: 20px;
+    transition: opacity 0.3s ease;
+}
+
+.upload-icon {
+    font-size: 48px;
+    color: #999;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+.upload-text {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.upload-hint {
+    font-size: 12px;
+    color: #888;
+}
+
+.preview-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #fff;
+}
+
+.preview-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.preview-content:hover .preview-overlay {
+    opacity: 1;
+}
+
+.change-text {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: rgba(229, 181, 91, 0.8);
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+.submit-btn {
+    background: #e5b55b;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-width: 100px;
+}
+
+.submit-btn:hover {
+    background: #c19645;
+}
+
+.cancel-btn {
+    background: #fff;
+    color: #666;
+    border: 1px solid #d0d0d0;
+    padding: 10px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-width: 100px;
+}
+
+.cancel-btn:hover {
+    background: #f5f5f5;
+}
+
+@media (max-width: 1200px) {
+    .form-item {
+        min-width: 250px;
+    }
+}
+
+@media (max-width: 992px) {
+    .form-item {
+        min-width: 280px;
+    }
+    
+    .header-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .header-actions {
+        align-self: flex-end;
+    }
+    
+    .signature-upload-area {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 15px;
+    }
+    
+    .breadcrumb {
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+    
+    h2 {
+        font-size: 20px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .form-item {
+        min-width: 100%;
+    }
+    
+    .signature-upload-area {
+        width: 100%;
+        max-width: 280px;
+        height: 280px;
+    }
+    
+    .header-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 480px) {
+    .input-field,
+    .text-field {
+        font-size: 13px;
+    }
+    
+    .header-section {
+        align-items: stretch;
+    }
+    
+    .header-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .edit-btn,
+    .cancel-btn,
+    .submit-btn {
+        width: 100%;
+    }
+    
+    .save-cancel-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .signature-upload-area {
+        height: 250px;
+    }
+    
+    .char-counter {
+        font-size: 11px;
+        bottom: 10px;
+        right: 12px;
+    }
+}
+
+/* 在原有email.css文件末尾添加以下样式 */
+
+/* 密码输入框包装器 - 与login.css保持一致 */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* 密码切换按钮 - 与login.css保持一致 */
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none;
+    padding: 5px;
+    transition: all 0.3s ease;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* 当有密码内容时显示眼睛 - 与login.css保持一致 */
+.password-toggle.has-content {
+    opacity: 1;
+    visibility: visible;
+}
+
+.password-toggle:hover {
+    opacity: 1;
+}
+
+/* 眼睛图标容器 - 与login.css保持一致 */
+.password-toggle .eye-icon {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 眼睛图标图片 - 与login.css保持一致 */
+.password-toggle .eye-icon img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+}
+
+/* 默认显示闭眼图片，隐藏睁眼图片 - 与login.css保持一致 */
+.password-toggle .eye-icon .eye-closed {
+    opacity: 1;
+}
+
+.password-toggle .eye-icon .eye-open {
+    opacity: 0;
+}
+
+/* 当密码可见时，显示睁眼图片，隐藏闭眼图片 - 与login.css保持一致 */
+.password-toggle.visible .eye-icon .eye-closed {
+    opacity: 0;
+}
+
+.password-toggle.visible .eye-icon .eye-open {
+    opacity: 1;
+}
+
+/* 悬停效果 - 与login.css保持一致 */
+.password-toggle:hover .eye-icon img {
+    transform: scale(1.1);
+}
+
+/* 图片基础样式 - 与login.css保持一致 */
+.password-toggle .eye-icon img.eye-closed,
+.password-toggle .eye-icon img.eye-open {
+    width: 20px;
+    height: 20px;
+}
+
+/* 错误提示样式 - 与login.css保持一致 */
+.error-tip {
+    color: #ff4444;
+    font-size: 12px;
+    margin-top: 4px;
+    font-family: "Microsoft YaHei", sans-serif;
+    display: none;
+    min-height: 18px;
+}
+
+.error-tip.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 输入框错误状态 - 与login.css保持一致 */
+.input-field.error {
+    border-color: #ff4444;
+    background-color: #fff8f8;
+}
+
+.input-field.success {
+    border-color: #4CAF50;
+}
+
+.input-field:focus.error {
+    border-color: #ff4444;
+    box-shadow: 0 0 5px rgba(255, 68, 68, 0.3);
+}
+
+.input-field:focus.success {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+/* 调整密码输入框的padding，为眼睛图标留出空间 */
+.password-wrapper .input-field {
+    padding-right: 45px;
+}
+
+/* 调整附件存储服务器密码输入框的padding */
+#attach-password {
+    padding-right: 45px;
+}

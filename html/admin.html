@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HES管理系统后台</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <div class="admin">
+        <div class="top">
+            <div class="logo">
+                <img src="../imgs/HESlogo.jpg">
+                HES管理系统后台
+            </div>
+
+            <div class="toolBtn">
+                <span class="user-menu" id="userMenu">
+                    <label id="usernameLabel">admin</label>
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="dropdown-item" id="changePassword">修改密码</div>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item" id="logout">退出登录</div>
+                    </div>
+                </span>
+            </div>
+        </div>
+        <div class="body">
+            <div class="left">
+                <ul class="navTools">
+                    <li>
+                        <div class="menuLiT indexLink"><span class="t1 toolLink"><a href="body.html">首页</a></span></div>
+                    </li>
+
+                    <li>
+                        <div class="menuLi indexLink"><span class="t2 toolLink"><a href="account.html">账户/角色管理</a></span></div>
+                    </li>
+                    <li>
+                        <div class="menuLi"><span class="t3 toolLink">基础信息管理</span></div>
+                        <dl class="downmenu">
+                            <dd><a href="email.html">邮件管理</a></dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <div class="menuLi"><span class="t4 toolLink">项目管理</span></div>
+                        <dl class="downmenu">
+                            <dd><a href="projct.html">图片列表</a></dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <div class="menuLi"><span class="t5 toolLink">统计报表</span></div>
+                        <dl class="downmenu">
+                            <dd><a href="single.html">单页列表</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+            <div class="right">
+                <iframe src="body.html" frameborder="0" id="rightiframe"></iframe>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 修改密码弹窗 (初始隐藏) -->
+    <div class="modal-overlay" id="passwordModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>修改密码</h3>
+                <span class="modal-close" id="modalClose">×</span>
+            </div>
+            <div class="modal-body">
+                <form id="passwordForm">
+                    <!-- 新密码行 -->
+                    <div class="form-group">
+                        <label for="newPassword">新密码</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="newPassword" name="newPassword" placeholder="8-20位，字母、数字、特殊字符至少两种" required>
+                            <span class="password-toggle" id="newPasswordToggle">
+                                <i class="eye-icon">
+                                    <img src="../imgs/登陆界面的密码隐藏图.jpg" alt="隐藏密码" class="eye-closed">
+                                    <img src="../imgs/登录界面的密码查看图.jpg" alt="显示密码" class="eye-open">
+                                </i>
+                            </span>
+                        </div>
+                        <div class="error-tip" id="newPasswordError"></div>
+                    </div>
+                    <!-- 确认新密码行 -->
+                    <div class="form-group">
+                        <label for="confirmPassword">确认新密码</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="请再次输入新密码" required>
+                            <span class="password-toggle" id="confirmPasswordToggle">
+                                <i class="eye-icon">
+                                    <img src="../imgs/登陆界面的密码隐藏图.jpg" alt="隐藏密码" class="eye-closed">
+                                    <img src="../imgs/登录界面的密码查看图.jpg" alt="显示密码" class="eye-open">
+                                </i>
+                            </span>
+                        </div>
+                        <div class="error-tip" id="confirmPasswordError"></div>
+                    </div>
+                    <div class="form-group buttons">
+                        <button type="submit" id="submitPassword" class="btn-primary" disabled>确认修改</button>
+                        <button type="button" id="cancelPassword" class="btn-secondary">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/admin.js"></script>    
+</body>
+</html>
